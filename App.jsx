@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import SellerForm from "./components/SellerForm";
 
 export default function App() {
-  const [language, setLanguage] = useState("ta");
+  const [language, setLanguage] = useState("en");
   const [search, setSearch] = useState("");
+  const [showSellerForm, setShowSellerForm] = useState(false);
 
   const text = {
     ta: {
@@ -12,7 +14,9 @@ export default function App() {
       call: "அழைப்பு",
       whatsapp: "வாட்ஸ்அப்",
       location: "இடம்",
+      seller: "விற்பனையாளர் பதிவு",
     },
+
     en: {
       title: "Denkanikota Bazaar",
       subtitle: "Your local market, in your pocket",
@@ -20,6 +24,7 @@ export default function App() {
       call: "Call",
       whatsapp: "WhatsApp",
       location: "Location",
+      seller: "Seller Registration",
     },
   };
 
@@ -54,9 +59,9 @@ export default function App() {
   return (
     <div
       style={{
-        padding: "20px",
         backgroundColor: "#f0fff4",
         minHeight: "100vh",
+        padding: "20px",
         fontFamily: "Arial",
       }}
     >
@@ -65,18 +70,20 @@ export default function App() {
           backgroundColor: "#16a34a",
           color: "white",
           padding: "20px",
-          borderRadius: "15px",
+          borderRadius: "20px",
         }}
       >
         <h1>🛒 {text[language].title}</h1>
 
         <p>{text[language].subtitle}</p>
 
-        <button onClick={() => setLanguage("ta")}>தமிழ்</button>
+        <button onClick={() => setLanguage("ta")}>
+          தமிழ்
+        </button>
 
         <button
-          onClick={() => setLanguage("en")}
           style={{ marginLeft: "10px" }}
+          onClick={() => setLanguage("en")}
         >
           English
         </button>
@@ -93,12 +100,22 @@ export default function App() {
           width: "100%",
           padding: "15px",
           borderRadius: "10px",
-          border: "1px solid gray",
         }}
       />
 
       <br />
       <br />
+
+      <button
+        onClick={() => setShowSellerForm(!showSellerForm)}
+      >
+        ➕ {text[language].seller}
+      </button>
+
+      <br />
+      <br />
+
+      {showSellerForm && <SellerForm />}
 
       {filtered.map((seller) => (
         <div
