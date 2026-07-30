@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import SellerForm from "./components/SellerForm";
 
 export default function App() {
   const [language, setLanguage] = useState("en");
   const [search, setSearch] = useState("");
-  const [showSellerForm, setShowSellerForm] = useState(false);
 
   const text = {
     ta: {
@@ -14,7 +12,6 @@ export default function App() {
       call: "அழைப்பு",
       whatsapp: "வாட்ஸ்அப்",
       location: "இடம்",
-      seller: "விற்பனையாளர் பதிவு",
     },
 
     en: {
@@ -24,7 +21,6 @@ export default function App() {
       call: "Call",
       whatsapp: "WhatsApp",
       location: "Location",
-      seller: "Seller Registration",
     },
   };
 
@@ -100,22 +96,12 @@ export default function App() {
           width: "100%",
           padding: "15px",
           borderRadius: "10px",
+          border: "1px solid gray",
         }}
       />
 
       <br />
       <br />
-
-      <button
-        onClick={() => setShowSellerForm(!showSellerForm)}
-      >
-        ➕ {text[language].seller}
-      </button>
-
-      <br />
-      <br />
-
-      {showSellerForm && <SellerForm />}
 
       {filtered.map((seller) => (
         <div
