@@ -9,6 +9,7 @@ export default function App() {
       name: "Ravi Vegetables",
       category: "Vegetables",
       phone: "9876543210",
+      whatsapp: "9876543210",
       location: "Denkanikota",
     },
     {
@@ -16,6 +17,7 @@ export default function App() {
       name: "Kumar Fruits",
       category: "Fruits",
       phone: "9876543211",
+      whatsapp: "9876543211",
       location: "Denkanikota",
     },
     {
@@ -23,6 +25,7 @@ export default function App() {
       name: "Selvam Hardware",
       category: "Hardware",
       phone: "9876543212",
+      whatsapp: "9876543212",
       location: "Denkanikota",
     },
   ];
@@ -81,7 +84,7 @@ export default function App() {
           </p>
 
           <p>
-            <a href={`https://wa.me/${seller.phone}`}>
+            <a href={`https://wa.me/${seller.whatsapp}`}>
               💬 WhatsApp
             </a>
           </p>
