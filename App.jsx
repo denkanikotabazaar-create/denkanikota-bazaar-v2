@@ -9,18 +9,21 @@ export default function App() {
       name: "Ravi Vegetables",
       category: "Vegetables",
       phone: "9876543210",
+      location: "Denkanikota",
     },
     {
       id: 2,
       name: "Kumar Fruits",
       category: "Fruits",
       phone: "9876543211",
+      location: "Denkanikota",
     },
     {
       id: 3,
       name: "Selvam Hardware",
       category: "Hardware",
       phone: "9876543212",
+      location: "Denkanikota",
     },
   ];
 
@@ -32,9 +35,9 @@ export default function App() {
     <div
       style={{
         padding: "20px",
-        fontFamily: "Arial",
         maxWidth: "500px",
         margin: "0 auto",
+        fontFamily: "Arial",
       }}
     >
       <h1>தேன்கனிகோட்டை பஜார்</h1>
@@ -45,15 +48,15 @@ export default function App() {
 
       <input
         type="text"
-        placeholder="Search shops..."
+        placeholder="கடைகளைத் தேடுங்கள்..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{
           width: "100%",
-          padding: "10px",
-          marginBottom: "20px",
+          padding: "12px",
           borderRadius: "8px",
           border: "1px solid #cccccc",
+          marginBottom: "20px",
         }}
       />
 
@@ -71,7 +74,19 @@ export default function App() {
 
           <p>{seller.category}</p>
 
-          <a href={`tel:${seller.phone}`}>📞 {seller.phone}</a>
+          <p>📞 {seller.phone}</p>
+
+          <p>
+            <a href={`tel:${seller.phone}`}>📞 Call</a>
+          </p>
+
+          <p>
+            <a href={`https://wa.me/${seller.phone}`}>
+              💬 WhatsApp
+            </a>
+          </p>
+
+          <p>📍 {seller.location}</p>
         </div>
       ))}
     </div>
