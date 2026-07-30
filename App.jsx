@@ -1,7 +1,27 @@
 import React, { useState } from "react";
 
 export default function App() {
+  const [language, setLanguage] = useState("ta");
   const [search, setSearch] = useState("");
+
+  const text = {
+    ta: {
+      title: "தேன்கனிகோட்டை பஜார்",
+      subtitle: "உங்கள் உள்ளூர் சந்தை, உங்கள் கையில்",
+      search: "கடைகளைத் தேடுங்கள்...",
+      call: "அழைப்பு",
+      whatsapp: "வாட்ஸ்அப்",
+      location: "இடம்",
+    },
+    en: {
+      title: "Denkanikota Bazaar",
+      subtitle: "Your local market, in your pocket",
+      search: "Search shops...",
+      call: "Call",
+      whatsapp: "WhatsApp",
+      location: "Location",
+    },
+  };
 
   const sellers = [
     {
@@ -9,7 +29,6 @@ export default function App() {
       name: "Ravi Vegetables",
       category: "Vegetables",
       phone: "9876543210",
-      whatsapp: "9876543210",
       location: "Denkanikota",
     },
     {
@@ -17,7 +36,6 @@ export default function App() {
       name: "Kumar Fruits",
       category: "Fruits",
       phone: "9876543211",
-      whatsapp: "9876543211",
       location: "Denkanikota",
     },
     {
@@ -25,12 +43,11 @@ export default function App() {
       name: "Selvam Hardware",
       category: "Hardware",
       phone: "9876543212",
-      whatsapp: "9876543212",
       location: "Denkanikota",
     },
   ];
 
-  const filteredSellers = sellers.filter((seller) =>
+  const filtered = sellers.filter((seller) =>
     seller.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -38,58 +55,82 @@ export default function App() {
     <div
       style={{
         padding: "20px",
-        maxWidth: "500px",
-        margin: "0 auto",
+        backgroundColor: "#f0fff4",
+        minHeight: "100vh",
         fontFamily: "Arial",
       }}
     >
-      <h1>தேன்கனிகோட்டை பஜார்</h1>
+      <div
+        style={{
+          backgroundColor: "#16a34a",
+          color: "white",
+          padding: "20px",
+          borderRadius: "15px",
+        }}
+      >
+        <h1>🛒 {text[language].title}</h1>
 
-      <p>Denkanikota Bazaar</p>
+        <p>{text[language].subtitle}</p>
 
-      <p>உங்கள் உள்ளூர் சந்தை, உங்கள் கையில்</p>
+        <button onClick={() => setLanguage("ta")}>தமிழ்</button>
+
+        <button
+          onClick={() => setLanguage("en")}
+          style={{ marginLeft: "10px" }}
+        >
+          English
+        </button>
+      </div>
+
+      <br />
 
       <input
         type="text"
-        placeholder="கடைகளைத் தேடுங்கள்..."
+        placeholder={text[language].search}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{
           width: "100%",
-          padding: "12px",
-          borderRadius: "8px",
-          border: "1px solid #cccccc",
-          marginBottom: "20px",
+          padding: "15px",
+          borderRadius: "10px",
+          border: "1px solid gray",
         }}
       />
 
-      {filteredSellers.map((seller) => (
+      <br />
+      <br />
+
+      {filtered.map((seller) => (
         <div
           key={seller.id}
           style={{
-            border: "1px solid #dddddd",
-            borderRadius: "10px",
-            padding: "15px",
-            marginBottom: "15px",
+            backgroundColor: "white",
+            borderRadius: "15px",
+            padding: "20px",
+            marginBottom: "20px",
           }}
         >
-          <h3>{seller.name}</h3>
+          <h2>{seller.name}</h2>
 
           <p>{seller.category}</p>
 
           <p>📞 {seller.phone}</p>
 
           <p>
-            <a href={`tel:${seller.phone}`}>📞 Call</a>
-          </p>
-
-          <p>
-            <a href={`https://wa.me/${seller.whatsapp}`}>
-              💬 WhatsApp
+            <a href={`tel:${seller.phone}`}>
+              📞 {text[language].call}
             </a>
           </p>
 
-          <p>📍 {seller.location}</p>
+          <p>
+            <a href={`https://wa.me/${seller.phone}`}>
+              💬 {text[language].whatsapp}
+            </a>
+          </p>
+
+          <p>
+            📍 {text[language].location}: {seller.location}
+          </p>
         </div>
       ))}
     </div>
